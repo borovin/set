@@ -1,0 +1,32 @@
+{
+  "name": "set",
+  "main": "set.js",
+  "version": "0.0.1",
+  "description": "Function for smart set object properties",
+  "authors": [
+    "a@borovin.com"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tools",
+    "test",
+    "tests",
+    "coverage",
+    "index.html",
+    "require.config.js",
+    "package.json",
+    "Gruntfile.js"
+  ],
+  "dependencies": {
+    "deepExtend": "https://github.com/borovin/deepExtend.git",
+
+    "lodash": "~3.1.0",
+    "requirejs": "~2.1.15"
+  }
+}
