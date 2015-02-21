@@ -40,6 +40,8 @@ define(function(require) {
             data = path;
         }
 
-        return set(object, null, data, extra);
+        set(object, null, data, extra);
+
+        return data;
     }
 });
