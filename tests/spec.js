@@ -13,7 +13,7 @@ define(function(require, exports, module) {
             expect(obj.a.b.c).toBe('abc');
         });
 
-        it('Установка значиния в частично заполненный объект', function(){
+        it('Возвращает только изменненные свойства', function(){
 
             var obj = {
                 a: {
@@ -23,13 +23,13 @@ define(function(require, exports, module) {
                 }
             };
 
-            set(obj, 'a', {
+            var changedProps = set(obj, 'a', {
                 e: 'e',
-                b: 'f'
+                b: 'b',
+                c: 'cc'
             });
 
-            expect(obj.a.e).toBe('e');
-            expect(obj.a.b).toBe('f');
+            expect(changedProps).toEqual({a: {e: 'e', c: 'cc'}});
         });
 
     });
