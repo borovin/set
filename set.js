@@ -1,7 +1,6 @@
 define(function (require) {
     //requirements
-    var deepExtend = require('bower_components/deepExtend/deepExtend'),
-        _ = require('bower_components/lodash/lodash');
+    var _ = require('bower_components/lodash/lodash');
 
     function getChanges(newData, oldData) {
 
@@ -48,31 +47,35 @@ define(function (require) {
         return object;
     }
 
-    function set(object, path, newData, extra) {
+    function set(object, newData) {
 
-        if (_.isPlainObject(newData)) {
-            _.forEach(newData, function (value, pathPart) {
-                set(object, (path ? path + '.' : '') + pathPart, value, extra);
-            });
-        } else {
-            deepExtend(object, pathToObject(path, newData));
-        }
+        _.forOwn(newData, function(value, key){
+
+            if (_.isPlainObject(value) && _.isPlainObject(object[key])){
+                set(object[key], value);
+            } else if (_.isArray(value) && _.isArray(object[key])){
+                object[key].splice.apply(object[key], [0, object[key].length].concat(value));
+            } else {
+                object[key] = value;
+            }
+
+        });
+
     }
 
-    return function (object, path, data, extra) {
+    return function (object, path, data) {
 
         var changedData;
 
         if (typeof path === 'string') {
             data = pathToObject(path, data);
         } else {
-            extra = data;
             data = path;
         }
 
         changedData = getChanges(data, object);
 
-        set(object, null, changedData, extra);
+        set(object, changedData);
 
         return changedData;
     }

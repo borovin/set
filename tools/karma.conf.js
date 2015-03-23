@@ -30,18 +30,6 @@ module.exports = function(config) {
         // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
         reporters: ['dots'],
 
-        //preprocessors: {
-        //    // source files, that you wanna generate coverage for
-        //    // do not include tests or libraries
-        //    // (these files will be instrumented by Istanbul)
-        //    'block.js': ['coverage']
-        //},
-        //
-        //coverageReporter: {
-        //    type : 'lcov',
-        //    dir : 'coverage/'
-        //},
-
         // web server port
         port: 9876,
 
