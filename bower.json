@@ -24,7 +24,9 @@
     "Gruntfile.js"
   ],
   "dependencies": {
-    "lodash": "~3.1.0",
+    "lodash": "~3.5.0"
+  },
+  "devDependencies": {
     "requirejs": "~2.1.15"
   }
 }
