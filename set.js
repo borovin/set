@@ -10,12 +10,12 @@ define(function (require) {
             return {};
         }
 
-        if (!_.isPlainObject(newData) || !_.isPlainObject(oldData)) {
+        if (!_.isPlainObject(newData)) {
             return newData;
         }
 
         _.forOwn(newData, function (value, key) {
-            if (_.isPlainObject(value)) {
+            if (_.isPlainObject(value) && oldData[key]) {
                 changes[key] = getChanges(value, oldData[key]);
 
                 if (_.isEmpty(changes[key]) && !_.isEmpty(value)) {
