@@ -2,9 +2,9 @@ define(function(require, exports, module) {
     //requirements
     var set = require('../set');
 
-    describe('Основной функционал', function(){
+    describe(module.id, function(){
 
-        it('Установка значиния в пустой объект', function(){
+        it('Set new props', function(){
 
             var obj = {};
 
@@ -13,7 +13,7 @@ define(function(require, exports, module) {
             expect(obj.a.b.c).toBe('abc');
         });
 
-        it('Возвращает только изменненные свойства', function(){
+        it('Set return only changed properties', function(){
 
             var obj = {
                 a: {
@@ -32,7 +32,7 @@ define(function(require, exports, module) {
             expect(changedProps).toEqual({a: {e: 'e', c: 'cc'}});
         });
 
-        it('Модификация массивов', function(){
+        it('Array modification', function(){
 
             var arr = [1,2,3];
 
@@ -42,7 +42,7 @@ define(function(require, exports, module) {
 
         });
 
-        it('Модификация объектов', function(){
+        it('Object modification', function(){
 
             var object = {
                 a: {
@@ -55,7 +55,7 @@ define(function(require, exports, module) {
             expect(object.a.b).toEqual('c');
         });
 
-        it('Установка булева значения', function(){
+        it('Set boolean', function(){
 
             var object = {
                 a: {
@@ -68,7 +68,7 @@ define(function(require, exports, module) {
             expect(object.a.b).toBeFalsy();
         });
 
-        it('Установка числового значения', function(){
+        it('Set number', function(){
 
             var object = {
                 a: {
@@ -81,7 +81,7 @@ define(function(require, exports, module) {
             expect(object.a.b).toBe(1);
         });
 
-        it('Установка массива', function(){
+        it('Set array', function(){
 
             var object = {
                 a: {
@@ -94,7 +94,7 @@ define(function(require, exports, module) {
             expect(object.a.b).toEqual([4,5]);
         });
 
-        it('Модификация вложенных массивов', function(){
+        it('Set nested array', function(){
 
             var object = {
                 a: {
