@@ -1,6 +1,7 @@
 define(function (require) {
     //requirements
-    var _ = require('bower_components/lodash/lodash');
+    var _ = require('bower_components/lodash/lodash.js'),
+        deepExtend = require('bower_components/deepExtend/deepExtend.js');
 
     function getChanges(newData, oldData) {
 
@@ -47,22 +48,6 @@ define(function (require) {
         return object;
     }
 
-    function set(object, newData) {
-
-        _.forOwn(newData, function(value, key){
-
-            if (_.isPlainObject(value) && _.isPlainObject(object[key])){
-                set(object[key], value);
-            } else if (_.isArray(value) && _.isArray(object[key])){
-                object[key].splice.apply(object[key], [0, object[key].length].concat(value));
-            } else {
-                object[key] = value;
-            }
-
-        });
-
-    }
-
     return function (object, path, data) {
 
         var changedData;
@@ -75,7 +60,7 @@ define(function (require) {
 
         changedData = getChanges(data, object);
 
-        set(object, changedData);
+        deepExtend(object, changedData);
 
         return changedData;
     }

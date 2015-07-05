@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
     //requirements
-    var set = require('../set');
+    var set = require('./set.js');
 
     describe(module.id, function(){
 
