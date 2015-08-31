@@ -150,4 +150,49 @@ describe(module.id, function(){
 
     });
 
+    it('All properties set by values', function(){
+
+        var a = {},
+            b = {},
+            object = {
+                c: {
+                    d: 1
+                }
+            };
+
+        set(a, object);
+        set(b, object);
+
+        a.c.d = 2;
+
+        expect(b.c.d).toEqual(1);
+
+    });
+
+    it('Unchanged properties set by values', function(){
+
+        var object = {
+                c: 1
+            };
+
+        var a = {
+            object: object
+        };
+
+        var b = {
+            object: object
+        };
+
+        set(a, {
+            object: object
+        });
+        set(b, {
+            object: object
+        });
+
+        a.object.c = 2;
+
+        expect(b.object.c).toEqual(1);
+
+    });
 });

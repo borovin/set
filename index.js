@@ -77,17 +77,15 @@ function pathToObject(path, value) {
 
 module.exports = function (object, path, data) {
 
-    var changedData;
-
     if (typeof path === 'string') {
         data = pathToObject(path, deepExtend.apply(null, [].slice.call(arguments, 2)));
     } else {
         data = deepExtend.apply(null, [].slice.call(arguments, 1));
     }
 
-    changedData = getChanges(data, object);
+    var changedData = getChanges(data, object);
 
-    deepExtend(object, changedData);
+    deepExtend(object, data);
 
     return changedData;
 
