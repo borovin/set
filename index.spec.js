@@ -186,6 +186,7 @@ describe(module.id, function(){
         set(a, {
             object: object
         });
+
         set(b, {
             object: object
         });
@@ -193,6 +194,16 @@ describe(module.id, function(){
         a.object.c = 2;
 
         expect(b.object.c).toEqual(1);
+
+    });
+
+    it('Set undefined', function(){
+
+        var a = {};
+
+        set(a, a.test, {b: 1}, {c: 2});
+
+        expect(a).toEqual({b: 1, c: 2});
 
     });
 });

@@ -2,8 +2,12 @@ var _ = require('bower_components/lodash/lodash.js');
 
 function deepExtend(obj) {
 
-    var cloneArray = function(arr){
-        return _.map(arr, function(item){
+    if (typeof obj === 'undefined') {
+        obj = {};
+    }
+
+    var cloneArray = function(arr) {
+        return _.map(arr, function(item) {
             if (_.isPlainObject(item)) {
                 return deepExtend({}, item);
             } else if (_.isArray(item)) {
@@ -42,7 +46,7 @@ function getChanges(newData, oldData) {
         return newData;
     }
 
-    _.forOwn(newData, function (value, key) {
+    _.forOwn(newData, function(value, key) {
         if (_.isPlainObject(value) && oldData[key]) {
             changes[key] = getChanges(value, oldData[key]);
 
@@ -63,7 +67,7 @@ function pathToObject(path, value) {
         attr = object,
         segments = path.split('.');
 
-    _.each(segments, function (segment, index) {
+    _.each(segments, function(segment, index) {
         if (index === segments.length - 1) {
             attr[segments[segments.length - 1]] = value;
         } else {
@@ -75,7 +79,7 @@ function pathToObject(path, value) {
     return object;
 }
 
-module.exports = function (object, path, data) {
+module.exports = function(object, path, data) {
 
     if (typeof path === 'string') {
         data = pathToObject(path, deepExtend.apply(null, [].slice.call(arguments, 2)));
