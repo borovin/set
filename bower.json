@@ -20,7 +20,6 @@
     "karma.conf.js"
   ],
   "dependencies": {
-    "lodash": "^3.5.0",
-    "deepExtend": "borovin/deepExtend#^1.2.0"
+    "lodash": "^3.10.0"
   }
 }
