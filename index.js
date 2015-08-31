@@ -1,5 +1,34 @@
-var _ = require('bower_components/lodash/lodash.js'),
-    deepExtend = require('bower_components/deepExtend/index.js');
+var _ = require('bower_components/lodash/lodash.js');
+
+function deepExtend(obj) {
+
+    var cloneArray = function(arr){
+        return _.map(arr, function(item){
+            if (_.isPlainObject(item)) {
+                return deepExtend({}, item);
+            } else if (_.isArray(item)) {
+                return cloneArray(item);
+            } else {
+                return item;
+            }
+        })
+    };
+
+    _.each([].slice.call(arguments, 1), function(source) {
+        _.forOwn(source, function(value, key) {
+            if (_.isPlainObject(value)) {
+                obj[key] = deepExtend({}, obj[key], value);
+            } else if (_.isArray(value)) {
+                obj[key] = cloneArray(value);
+            } else {
+                obj[key] = value;
+            }
+        });
+    });
+
+    return obj;
+
+}
 
 function getChanges(newData, oldData) {
 
@@ -51,9 +80,9 @@ module.exports = function (object, path, data) {
     var changedData;
 
     if (typeof path === 'string') {
-        data = pathToObject(path, data);
+        data = pathToObject(path, deepExtend.apply(null, [].slice.call(arguments, 2)));
     } else {
-        data = path;
+        data = deepExtend.apply(null, [].slice.call(arguments, 1));
     }
 
     changedData = getChanges(data, object);
@@ -61,4 +90,5 @@ module.exports = function (object, path, data) {
     deepExtend(object, changedData);
 
     return changedData;
+
 };

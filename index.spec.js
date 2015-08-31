@@ -8,7 +8,7 @@ describe(module.id, function(){
 
         set(obj, 'a.b.c', 'abc');
 
-        expect(obj.a.b.c).toBe('abc');
+        expect(obj.a.b.c).toEqual('abc');
     });
 
     it('Set return only changed properties', function(){
@@ -63,7 +63,7 @@ describe(module.id, function(){
 
         set(object, 'a.b', false);
 
-        expect(object.a.b).toBeFalsy();
+        expect(object.a.b).toEqual(false);
     });
 
     it('Set number', function(){
@@ -76,7 +76,7 @@ describe(module.id, function(){
 
         set(object, 'a.b', 1);
 
-        expect(object.a.b).toBe(1);
+        expect(object.a.b).toEqual(1);
     });
 
     it('Set array', function(){
@@ -103,6 +103,50 @@ describe(module.id, function(){
         set(object, 'a.b', [4,5]);
 
         expect(object.a.b).toEqual([4,5]);
+
+    });
+
+    it('Set multiple objects on object', function(){
+
+        var object = {
+            a: 1
+        };
+
+        set(object, {
+            b: 2
+        }, {
+            c: 3
+        });
+
+        expect(object).toEqual({a: 1, b: 2, c: 3});
+
+    });
+
+    it('Set multiple objects on object path', function(){
+
+        var object = {
+            a: 1
+        };
+
+        set(object, 'a.b', {
+            c: 2
+        }, {
+            d: 3
+        });
+
+        expect(object).toEqual({a: {b: {c: 2, d: 3}}});
+
+    });
+
+    it('Set multiple objects on empty object return all new properties', function(){
+
+        var object = set({}, {
+            a: 1
+        }, {
+            b: 2
+        });
+
+        expect(object).toEqual({a: 1, b: 2});
 
     });
 
