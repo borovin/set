@@ -1,8 +1,8 @@
 var set = require('../index');
 
-describe(module.id, function(){
+describe(module.id, function () {
 
-    it('Set new props', function(){
+    it('Set new props', function () {
 
         var obj = {};
 
@@ -11,7 +11,7 @@ describe(module.id, function(){
         expect(obj.a.b.c).toEqual('abc');
     });
 
-    it('Set return only changed properties', function(){
+    it('Set return only changed properties', function () {
 
         var obj = {
             a: {
@@ -30,17 +30,17 @@ describe(module.id, function(){
         expect(changedProps).toEqual({a: {e: 'e', c: 'cc'}});
     });
 
-    it('Array modification', function(){
+    it('Array modification', function () {
 
-        var arr = [1,2,3];
+        var arr = [1, 2, 3];
 
-        set(arr, [4,5,6]);
+        set(arr, [4, 5, 6]);
 
-        expect(arr).toEqual([4,5,6]);
+        expect(arr).toEqual([4, 5, 6]);
 
     });
 
-    it('Object modification', function(){
+    it('Object modification', function () {
 
         var object = {
             a: {
@@ -53,7 +53,7 @@ describe(module.id, function(){
         expect(object.a.b).toEqual('c');
     });
 
-    it('Set boolean', function(){
+    it('Set boolean', function () {
 
         var object = {
             a: {
@@ -66,7 +66,7 @@ describe(module.id, function(){
         expect(object.a.b).toEqual(false);
     });
 
-    it('Set number', function(){
+    it('Set number', function () {
 
         var object = {
             a: {
@@ -79,7 +79,7 @@ describe(module.id, function(){
         expect(object.a.b).toEqual(1);
     });
 
-    it('Set array', function(){
+    it('Set array', function () {
 
         var object = {
             a: {
@@ -87,26 +87,26 @@ describe(module.id, function(){
             }
         };
 
-        set(object, 'a.b', [4,5]);
+        set(object, 'a.b', [4, 5]);
 
-        expect(object.a.b).toEqual([4,5]);
+        expect(object.a.b).toEqual([4, 5]);
     });
 
-    it('Set nested array', function(){
+    it('Set nested array', function () {
 
         var object = {
             a: {
-                b: [1,2,3]
+                b: [1, 2, 3]
             }
         };
 
-        set(object, 'a.b', [4,5]);
+        set(object, 'a.b', [4, 5]);
 
-        expect(object.a.b).toEqual([4,5]);
+        expect(object.a.b).toEqual([4, 5]);
 
     });
 
-    it('Set multiple objects on object', function(){
+    it('Set multiple objects on object', function () {
 
         var object = {
             a: 1
@@ -122,7 +122,7 @@ describe(module.id, function(){
 
     });
 
-    it('Set multiple objects on object path', function(){
+    it('Set multiple objects on object path', function () {
 
         var object = {
             a: 1
@@ -138,7 +138,7 @@ describe(module.id, function(){
 
     });
 
-    it('Set multiple objects on empty object return all new properties', function(){
+    it('Set multiple objects on empty object return all new properties', function () {
 
         var object = set({}, {
             a: 1
@@ -150,15 +150,15 @@ describe(module.id, function(){
 
     });
 
-    it('All properties set by values', function(){
+    it('All properties set by values', function () {
 
-        var a = {},
-            b = {},
-            object = {
-                c: {
-                    d: 1
-                }
-            };
+        var a = {};
+        var b = {};
+        var object = {
+            c: {
+                d: 1
+            }
+        };
 
         set(a, object);
         set(b, object);
@@ -169,11 +169,11 @@ describe(module.id, function(){
 
     });
 
-    it('Unchanged properties set by values', function(){
+    it('Unchanged properties set by values', function () {
 
         var object = {
-                c: 1
-            };
+            c: 1
+        };
 
         var a = {
             object: object
@@ -197,7 +197,7 @@ describe(module.id, function(){
 
     });
 
-    it('Set undefined', function(){
+    it('Set undefined', function () {
 
         var a = {};
 

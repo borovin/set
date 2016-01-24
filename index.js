@@ -2,12 +2,14 @@ var _ = require('lodash');
 
 function deepExtend(obj) {
 
+    var cloneArray;
+
     if (typeof obj === 'undefined') {
         obj = {};
     }
 
-    var cloneArray = function(arr) {
-        return _.map(arr, function(item) {
+    cloneArray = function (arr) {
+        return _.map(arr, function (item) {
             if (_.isPlainObject(item)) {
                 return deepExtend({}, item);
             } else if (_.isArray(item)) {
@@ -15,11 +17,11 @@ function deepExtend(obj) {
             } else {
                 return item;
             }
-        })
+        });
     };
 
-    _.each([].slice.call(arguments, 1), function(source) {
-        _.forOwn(source, function(value, key) {
+    _.each([].slice.call(arguments, 1), function (source) {
+        _.forOwn(source, function (value, key) {
             if (_.isPlainObject(value)) {
                 obj[key] = deepExtend({}, obj[key], value);
             } else if (_.isArray(value)) {
@@ -46,7 +48,7 @@ function getChanges(newData, oldData) {
         return newData;
     }
 
-    _.forOwn(newData, function(value, key) {
+    _.forOwn(newData, function (value, key) {
         if (_.isPlainObject(value) && oldData[key]) {
             changes[key] = getChanges(value, oldData[key]);
 
@@ -63,11 +65,12 @@ function getChanges(newData, oldData) {
 }
 
 function pathToObject(path, value) {
-    var object = {},
-        attr = object,
-        segments = path.split('.');
 
-    _.each(segments, function(segment, index) {
+    var object = {};
+    var attr = object;
+    var segments = path.split('.');
+
+    _.each(segments, function (segment, index) {
         if (index === segments.length - 1) {
             attr[segments[segments.length - 1]] = value;
         } else {
@@ -79,7 +82,9 @@ function pathToObject(path, value) {
     return object;
 }
 
-module.exports = function(object, path, data) {
+module.exports = function (object, path, data) {
+
+    var changedData;
 
     if (typeof path === 'string') {
         data = pathToObject(path, deepExtend.apply(null, [].slice.call(arguments, 2)));
@@ -87,7 +92,7 @@ module.exports = function(object, path, data) {
         data = deepExtend.apply(null, [].slice.call(arguments, 1));
     }
 
-    var changedData = getChanges(data, object);
+    changedData = getChanges(data, object);
 
     deepExtend(object, data);
 
