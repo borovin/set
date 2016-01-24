@@ -1,4 +1,4 @@
-var _ = require('bower_components/lodash/lodash.js');
+var _ = require('lodash');
 
 function deepExtend(obj) {
 

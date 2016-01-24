@@ -1,4 +1,4 @@
-var set = require('./index.js');
+var set = require('../index');
 
 describe(module.id, function(){
 
