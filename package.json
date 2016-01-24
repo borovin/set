@@ -1,4 +1,5 @@
 {
+  "version": "1.0.0",
   "name": "set",
   "description": "Function for smart set object properties",
   "repository": {
