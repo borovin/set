@@ -9,11 +9,13 @@
   },
   "homepage": "https://github.com/borovin/set",
   "scripts": {
-    "test": "node ./node_modules/karma/bin/karma start --single-run"
+    "test": "node ./node_modules/karma/bin/karma start --single-run && node ./node_modules/eslint/bin/eslint.js tests/*.js index.js "
   },
   "author": "a@borovin.com",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-yandex": "^1.0.5",
     "jasmine-core": "^2.3.4",
     "karma": "^0.12.37",
     "karma-jasmine": "^0.3.5",
