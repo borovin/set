@@ -1,5 +1,5 @@
 {
-  "extends": "yandex",
+  "extends": ["eslint:recommended", "yandex"],
   "env": {
     "commonjs": true,
     "browser": true,
