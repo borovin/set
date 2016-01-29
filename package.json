@@ -8,7 +8,6 @@
     "url": "https://github.com/borovin/set.git"
   },
   "homepage": "https://github.com/borovin/set",
-
   "scripts": {
     "test": "npm run karma -s && npm run lint -s",
     "karma": "node ./node_modules/karma/bin/karma start --single-run",
