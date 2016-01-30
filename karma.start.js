@@ -6,7 +6,7 @@ var testImports = testFiles.map(function (testFile) {
 
     var testModule = testFile
         .replace(/\/base\//g, '')
-        .replace(/.js/g, '');
+        .replace(/\.js/g, '');
 
     return System.import(testModule);
 });
