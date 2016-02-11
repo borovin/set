@@ -61,7 +61,7 @@ function getChanges(newData, oldData) {
         }
     });
 
-    return changes;
+    return _.isEmpty(changes) ? null : changes;
 }
 
 function pathToObject(path, value) {

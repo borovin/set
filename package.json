@@ -1,5 +1,5 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "name": "set",
   "main": "index.js",
   "description": "Function for smart set object properties",
