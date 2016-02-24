@@ -8,9 +8,11 @@
   "devDependencies": {
     "eslint": "^1.10.3",
     "eslint-config-yandex": "^1.0.5",
+    "express": "^4.13.4",
     "testem": "^1.2.2"
   },
   "dependencies": {
+    "playground": "github:borovin/playground",
     "steal": "^0.13.2"
   },
   "system": {
