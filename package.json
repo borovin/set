@@ -8,7 +8,7 @@
     "lint": "node ./node_modules/eslint/bin/eslint.js ."
   },
   "devDependencies": {
-    "eslint": "^1.10.3",
+    "eslint": "^2.0.0",
     "eslint-config-yandex": "^1.0.5",
     "express": "^4.13.4",
     "testem": "^1.2.2",
