@@ -1,14 +1,14 @@
 /* eslint no-console: 0 */
 
-var express = require('express');
-var playground = require('playground');
+import express from 'express';
+import playground from 'playground';
 
-var app = express();
-var port = process.env.PORT || 8080;
+const app = express();
+const port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname));
 app.use('/playground', playground);
 
-app.listen(port, function () {
-    console.log('Server started at port: ' + port);
+app.listen(port, () => {
+  console.log(`Server started at port: ${port}`);
 });
