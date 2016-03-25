@@ -6,7 +6,7 @@
     "test": "npm run testem-ci && npm run lint -s",
     "testem": "node ./node_modules/testem/testem.js",
     "testem-ci": "node ./node_modules/testem/testem.js ci",
-    "lint": "node ./node_modules/eslint/bin/eslint.js . --fix"
+    "lint": "node ./node_modules/eslint/bin/eslint.js ."
   },
   "devDependencies": {
     "eslint": "^2.0.0",
