@@ -1,4 +1,9 @@
-var _ = require('lodash');
+import map from 'lodash/map';
+import forOwn from 'lodash/forOwn';
+import isPlainObject from 'lodash/isPlainObject';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import each from 'lodash/each';
 
 function deepExtend(obj) {
 
@@ -9,10 +14,10 @@ function deepExtend(obj) {
     }
 
     cloneArray = function (arr) {
-        return _.map(arr, function (item) {
-            if (_.isPlainObject(item)) {
+        return map(arr, function (item) {
+            if (isPlainObject(item)) {
                 return deepExtend({}, item);
-            } else if (_.isArray(item)) {
+            } else if (isArray(item)) {
                 return cloneArray(item);
             } else {
                 return item;
@@ -20,11 +25,11 @@ function deepExtend(obj) {
         });
     };
 
-    _.each([].slice.call(arguments, 1), function (source) {
-        _.forOwn(source, function (value, key) {
-            if (_.isPlainObject(value)) {
+    each([].slice.call(arguments, 1), function (source) {
+        forOwn(source, function (value, key) {
+            if (isPlainObject(value)) {
                 obj[key] = deepExtend({}, obj[key], value);
-            } else if (_.isArray(value)) {
+            } else if (isArray(value)) {
                 obj[key] = cloneArray(value);
             } else {
                 obj[key] = value;
@@ -44,15 +49,15 @@ function getChanges(newData, oldData) {
         return {};
     }
 
-    if (!_.isPlainObject(newData)) {
+    if (!isPlainObject(newData)) {
         return newData;
     }
 
-    _.forOwn(newData, function (value, key) {
-        if (_.isPlainObject(value) && oldData[key]) {
+    forOwn(newData, function (value, key) {
+        if (isPlainObject(value) && oldData[key]) {
             changes[key] = getChanges(value, oldData[key]);
 
-            if (_.isEmpty(changes[key]) && !_.isEmpty(value)) {
+            if (isEmpty(changes[key]) && !isEmpty(value)) {
                 delete changes[key];
             }
 
@@ -61,7 +66,7 @@ function getChanges(newData, oldData) {
         }
     });
 
-    return _.isEmpty(changes) ? null : changes;
+    return isEmpty(changes) ? null : changes;
 }
 
 function pathToObject(path, value) {
@@ -70,7 +75,7 @@ function pathToObject(path, value) {
     var attr = object;
     var segments = path.split('.');
 
-    _.each(segments, function (segment, index) {
+    each(segments, function (segment, index) {
         if (index === segments.length - 1) {
             attr[segments[segments.length - 1]] = value;
         } else {
@@ -82,7 +87,7 @@ function pathToObject(path, value) {
     return object;
 }
 
-module.exports = function (object, path, data) {
+export default function (object, path, data) {
 
     var changedData;
 

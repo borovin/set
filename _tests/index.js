@@ -1,6 +1,6 @@
-var set = require('../index');
+import set from '../index';
 
-describe(module.id, function () {
+describe('set', function () {
 
     it('Set new props', function () {
 
