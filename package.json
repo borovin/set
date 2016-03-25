@@ -12,7 +12,7 @@
     "start": "node app.js",
     "test": "npm run testem-ci && npm run lint -s",
     "testem": "node ./node_modules/testem/testem.js",
-    "testem-ci": "node ./node_modules/testem/testem.js ci",
+    "testem-ci": "node ./node_modules/testem/testem.js ci -P 5",
     "lint": "node ./node_modules/eslint/bin/eslint.js ."
   },
   "devDependencies": {
