@@ -1,209 +1,185 @@
 import set from '../index';
 
-describe('set', function () {
+describe('set', () => {
+  it('Set new props', () => {
+    const obj = {};
 
-    it('Set new props', function () {
+    set(obj, 'a.b.c', 'abc');
 
-        var obj = {};
+    expect(obj.a.b.c).toEqual('abc');
+  });
 
-        set(obj, 'a.b.c', 'abc');
+  it('Set return only changed properties', () => {
+    const obj = {
+      a: {
+        b: 'b',
+        c: 'c',
+        d: 'd',
+      },
+    };
 
-        expect(obj.a.b.c).toEqual('abc');
+    const changedProps = set(obj, 'a', {
+      e: 'e',
+      b: 'b',
+      c: 'cc',
     });
 
-    it('Set return only changed properties', function () {
+    expect(changedProps).toEqual({ a: { e: 'e', c: 'cc' } });
+  });
 
-        var obj = {
-            a: {
-                b: 'b',
-                c: 'c',
-                d: 'd'
-            }
-        };
+  it('Array modification', () => {
+    const arr = [1, 2, 3];
 
-        var changedProps = set(obj, 'a', {
-            e: 'e',
-            b: 'b',
-            c: 'cc'
-        });
+    set(arr, [4, 5, 6]);
 
-        expect(changedProps).toEqual({a: {e: 'e', c: 'cc'}});
+    expect(arr).toEqual([4, 5, 6]);
+  });
+
+  it('Object modification', () => {
+    const object = {
+      a: {
+        b: 'b',
+      },
+    };
+
+    set(object, 'a.b', 'c');
+
+    expect(object.a.b).toEqual('c');
+  });
+
+  it('Set boolean', () => {
+    const object = {
+      a: {
+        b: 'b',
+      },
+    };
+
+    set(object, 'a.b', false);
+
+    expect(object.a.b).toEqual(false);
+  });
+
+  it('Set number', () => {
+    const object = {
+      a: {
+        b: 'b',
+      },
+    };
+
+    set(object, 'a.b', 1);
+
+    expect(object.a.b).toEqual(1);
+  });
+
+  it('Set array', () => {
+    const object = {
+      a: {
+        b: 'b',
+      },
+    };
+
+    set(object, 'a.b', [4, 5]);
+
+    expect(object.a.b).toEqual([4, 5]);
+  });
+
+  it('Set nested array', () => {
+    const object = {
+      a: {
+        b: [1, 2, 3],
+      },
+    };
+
+    set(object, 'a.b', [4, 5]);
+
+    expect(object.a.b).toEqual([4, 5]);
+  });
+
+  it('Set multiple objects on object', () => {
+    const object = {
+      a: 1,
+    };
+
+    set(object, {
+      b: 2,
+    }, {
+      c: 3,
     });
 
-    it('Array modification', function () {
+    expect(object).toEqual({ a: 1, b: 2, c: 3 });
+  });
 
-        var arr = [1, 2, 3];
+  it('Set multiple objects on object path', () => {
+    const object = {
+      a: 1,
+    };
 
-        set(arr, [4, 5, 6]);
-
-        expect(arr).toEqual([4, 5, 6]);
-
+    set(object, 'a.b', {
+      c: 2,
+    }, {
+      d: 3,
     });
 
-    it('Object modification', function () {
+    expect(object).toEqual({
+      a: {
+        b: {
+          c: 2,
+          d: 3,
+        },
+      },
+    });
+  });
 
-        var object = {
-            a: {
-                b: 'b'
-            }
-        };
-
-        set(object, 'a.b', 'c');
-
-        expect(object.a.b).toEqual('c');
+  it('Set multiple objects on empty object return all new properties', () => {
+    const object = set({}, {
+      a: 1,
+    }, {
+      b: 2,
     });
 
-    it('Set boolean', function () {
+    expect(object).toEqual({ a: 1, b: 2 });
+  });
 
-        var object = {
-            a: {
-                b: 'b'
-            }
-        };
+  it('All properties set by values', () => {
+    const a = {};
+    const b = {};
+    const object = {
+      c: {
+        d: 1,
+      },
+    };
 
-        set(object, 'a.b', false);
+    set(a, object);
+    set(b, object);
 
-        expect(object.a.b).toEqual(false);
-    });
+    a.c.d = 2;
 
-    it('Set number', function () {
+    expect(b.c.d).toEqual(1);
+  });
 
-        var object = {
-            a: {
-                b: 'b'
-            }
-        };
+  it('Unchanged properties set by values', () => {
+    const object = {
+      c: 1,
+    };
 
-        set(object, 'a.b', 1);
+    const a = { object };
 
-        expect(object.a.b).toEqual(1);
-    });
+    const b = { object };
 
-    it('Set array', function () {
+    set(a, { object });
 
-        var object = {
-            a: {
-                b: 'b'
-            }
-        };
+    set(b, { object });
 
-        set(object, 'a.b', [4, 5]);
+    a.object.c = 2;
 
-        expect(object.a.b).toEqual([4, 5]);
-    });
+    expect(b.object.c).toEqual(1);
+  });
 
-    it('Set nested array', function () {
+  it('Set undefined', () => {
+    const a = {};
 
-        var object = {
-            a: {
-                b: [1, 2, 3]
-            }
-        };
+    set(a, a.test, { b: 1 }, { c: 2 });
 
-        set(object, 'a.b', [4, 5]);
-
-        expect(object.a.b).toEqual([4, 5]);
-
-    });
-
-    it('Set multiple objects on object', function () {
-
-        var object = {
-            a: 1
-        };
-
-        set(object, {
-            b: 2
-        }, {
-            c: 3
-        });
-
-        expect(object).toEqual({a: 1, b: 2, c: 3});
-
-    });
-
-    it('Set multiple objects on object path', function () {
-
-        var object = {
-            a: 1
-        };
-
-        set(object, 'a.b', {
-            c: 2
-        }, {
-            d: 3
-        });
-
-        expect(object).toEqual({a: {b: {c: 2, d: 3}}});
-
-    });
-
-    it('Set multiple objects on empty object return all new properties', function () {
-
-        var object = set({}, {
-            a: 1
-        }, {
-            b: 2
-        });
-
-        expect(object).toEqual({a: 1, b: 2});
-
-    });
-
-    it('All properties set by values', function () {
-
-        var a = {};
-        var b = {};
-        var object = {
-            c: {
-                d: 1
-            }
-        };
-
-        set(a, object);
-        set(b, object);
-
-        a.c.d = 2;
-
-        expect(b.c.d).toEqual(1);
-
-    });
-
-    it('Unchanged properties set by values', function () {
-
-        var object = {
-            c: 1
-        };
-
-        var a = {
-            object: object
-        };
-
-        var b = {
-            object: object
-        };
-
-        set(a, {
-            object: object
-        });
-
-        set(b, {
-            object: object
-        });
-
-        a.object.c = 2;
-
-        expect(b.object.c).toEqual(1);
-
-    });
-
-    it('Set undefined', function () {
-
-        var a = {};
-
-        set(a, a.test, {b: 1}, {c: 2});
-
-        expect(a).toEqual({b: 1, c: 2});
-
-    });
+    expect(a).toEqual({ b: 1, c: 2 });
+  });
 });
