@@ -11,5 +11,5 @@ before_script:
   - sleep 3 # give xvfb some time to start
 script:
   - testem launchers
-  - testem ci --skip PhantomJS
+  - testem ci --skip PhantomJS,Chromium
   - npm run lint -s
