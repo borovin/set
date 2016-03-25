@@ -23,8 +23,8 @@
     "playground": "github:borovin/playground"
   },
   "dependencies": {
-    "lodash": "^4.0.0",
-    "steal": "^0.14.0"
+    "steal": "^0.15.0",
+    "lodash": "^4.0.0"
   },
   "system": {
     "npmIgnore": [
