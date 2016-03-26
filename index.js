@@ -1,9 +1,4 @@
-import map from 'lodash/map';
-import forOwn from 'lodash/forOwn';
-import isPlainObject from 'lodash/isPlainObject';
-import isArray from 'lodash/isArray';
-import isEmpty from 'lodash/isEmpty';
-import each from 'lodash/each';
+import { map, forOwn, isPlainObject, isArray, isEmpty, each } from 'lodash-es';
 
 function deepExtend(obj = {}, ...args) {
   const result = obj;
