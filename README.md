@@ -1,5 +1,4 @@
-<h1>
-set <a target="_blank" href="https://travis-ci.org/borovin/set">
+<h1>set <a target="_blank" href="https://travis-ci.org/borovin/set">
 <img src="https://travis-ci.org/basketjs/get.svg?branch=master"/></a> 
 <a target="_blank" href="https://david-dm.org/borovin/set">
 <img src="https://david-dm.org/borovin/set.svg"/>
