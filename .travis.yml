@@ -24,6 +24,5 @@ deploy:
   api_key: $NPM_AUTH_TOKEN
   email: "npmbasket@gmail.com"
   skip_cleanup: true
-  tags: true
   on:
       branch: master
