@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "name": "set",
+  "name": "@basket/set",
   "main": "index.js",
   "description": "Function for smart set object properties",
   "repository": {
