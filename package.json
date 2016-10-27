@@ -28,5 +28,21 @@
     "lodash.mergewith": "^4.6.0",
     "lodash.set": "^4.3.2",
     "lodash.isarray": "latest"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/node_modules/**",
+      "!**/__tests__/**",
+      "!coverage/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   }
 }
