@@ -3,11 +3,11 @@ const _set = require('lodash.set');
 const _mergeWith = require('lodash.mergewith');
 const _cloneDeep = require('lodash.clonedeep');
 const _isPlainObject = require('lodash.isplainobject');
-const _isArray = require('lodash.isarray');
+const isArray = Array.isArray;
 
 function merge(...args) {
     return _mergeWith(...args, (objValue, srcValue) => {
-        if (_isArray(srcValue)) {
+        if (isArray(srcValue)) {
             return _cloneDeep(srcValue);
         }
     });
