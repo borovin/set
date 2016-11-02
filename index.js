@@ -1,8 +1,8 @@
 const get = require('@basket/get');
 const _set = require('lodash/set');
-const mergeWith = require('lodash/mergewith');
-const cloneDeep = require('lodash/clonedeep');
-const isPlainObject = require('lodash/isplainobject');
+const mergeWith = require('lodash/mergeWith');
+const cloneDeep = require('lodash/cloneDeep');
+const isPlainObject = require('lodash/isPlainObject');
 const isArray = Array.isArray;
 
 function merge(...args) {
