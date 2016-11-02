@@ -23,10 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "@basket/get": "^1.2.4",
-    "lodash.clonedeep": "^4.5.0",
-    "lodash.isplainobject": "^4.0.6",
-    "lodash.mergewith": "^4.6.0",
-    "lodash.set": "^4.3.2"
+    "lodash": "^4.16.6"
   },
   "jest": {
     "collectCoverageFrom": [
