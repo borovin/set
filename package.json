@@ -23,7 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "@basket/get": "^1.2.4",
-    "lodash": "^4.16.6"
+    "lodash": "^4.17.3"
   },
   "jest": {
     "collectCoverageFrom": [
